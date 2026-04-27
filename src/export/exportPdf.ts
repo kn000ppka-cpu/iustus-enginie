@@ -89,6 +89,32 @@ export function getVerdictPdfBlobUrl(doc: VerdictDoc): Promise<string> {
   });
 }
 
+/** Возвращает blob с PDF (без URL — пригодится для Web Share API). */
+export function getVerdictPdfBlob(doc: VerdictDoc): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    try {
+      pdfMake.createPdf(buildDefinition(doc)).getBlob((blob: Blob) => {
+        resolve(blob);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+/** Возвращает PDF как base64 data:URL (для случаев, когда blob не работает). */
+export function getVerdictPdfDataUrl(doc: VerdictDoc): Promise<string> {
+  return new Promise((resolve, reject) => {
+    try {
+      pdfMake.createPdf(buildDefinition(doc)).getBase64((data: string) => {
+        resolve(`data:application/pdf;base64,${data}`);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
 // ────────────────────────────────────────────────────────────────────────────
 
 function sectionTitle(text: string): Content[] {

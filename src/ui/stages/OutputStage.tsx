@@ -157,26 +157,63 @@ export function OutputStage() {
     try {
       // Lazy-import: pdfmake (со шрифтами ≈ 2 MB) грузится только при первом
       // клике на экспорт — основной бандл остаётся компактным.
-      const { exportVerdictPdf, getVerdictPdfBlobUrl } = await import('@export/exportPdf');
+      const { exportVerdictPdf, getVerdictPdfBlob, getVerdictPdfBlobUrl } =
+        await import('@export/exportPdf');
       const fileName = `verdict_${(caseFile.subject.fullName || 'case').replace(/\s+/g, '_')}_${
         caseFile.context.trialDate ?? 'draft'
       }.pdf`;
 
-      if (inTelegram) {
-        // В Telegram WebApp прямой download ведёт себя нестабильно
-        // (особенно на iOS): браузеры могут заблокировать save-as
-        // внутри встроенной вебвью. Открываем PDF через blob URL во
-        // внешнем браузере — пользователь сможет нажать «Поделиться» /
-        // «Сохранить» через системные средства.
+      // Не-Telegram: обычный browser download через pdfmake.
+      if (!inTelegram) {
+        exportVerdictPdf(effectiveVerdict, fileName);
+        return;
+      }
+
+      // Telegram-режим. Многослойная стратегия:
+      //   1. Web Share API с File — нативная iOS/Android-шторка «Поделиться».
+      //      Самый надёжный путь на телефоне: пользователь сохранит в Files,
+      //      Google Drive, отправит в чат и т. п.
+      //   2. Открытие blob URL во внешнем браузере (для Telegram Desktop).
+      //   3. Fallback: прямой download (Telegram Web на ПК).
+      const blob = await getVerdictPdfBlob(effectiveVerdict);
+      const file = new File([blob], fileName, { type: 'application/pdf' });
+
+      // 1) Web Share API
+      const nav = navigator as Navigator & {
+        canShare?: (data: { files: File[] }) => boolean;
+        share?: (data: { files: File[]; title?: string }) => Promise<void>;
+      };
+      if (nav.share && nav.canShare && nav.canShare({ files: [file] })) {
+        try {
+          await nav.share({ files: [file], title: 'Приговор (Iustus Engine)' });
+          return;
+        } catch (err) {
+          // Пользователь отменил share-диалог — это норма, выходим без alert.
+          if ((err as Error)?.name === 'AbortError') return;
+          // Иначе — падаем на следующий способ.
+        }
+      }
+
+      // 2) Открыть в системном браузере через openLink
+      try {
         const url = await getVerdictPdfBlobUrl(effectiveVerdict);
         openExternalLink(url);
         await tgAlert(
-          'PDF открыт во внешнем браузере. Используйте кнопку «Поделиться» ' +
-            'или «Сохранить» вашего браузера, чтобы сохранить файл.',
+          'PDF открыт во внешнем браузере. Нажмите «Поделиться» / «Сохранить», ' +
+            'чтобы сохранить файл на устройство.',
         );
-      } else {
+        return;
+      } catch {
+        // 3) Последний шанс — прямой download
         exportVerdictPdf(effectiveVerdict, fileName);
       }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('[exportPdf] failed', err);
+      await tgAlert(
+        'Не удалось создать PDF. Попробуйте открыть приложение в Telegram на ПК ' +
+          'или в браузере вместо мобильного клиента.',
+      );
     } finally {
       setTimeout(() => setExporting(false), 300);
     }
