@@ -52,8 +52,16 @@ export function initTelegram(): void {
       if (!tg.isExpanded) tg.expand();
     });
 
-    // Окрашиваем заголовок Telegram в цвет фона приложения.
-    tg.setHeaderColor('bg_color');
+    // setHeaderColor поддерживается с Telegram v6.1+; в старых клиентах
+    // просто пропускаем — не критично.
+    try {
+      const ver = parseFloat(tg.version ?? '0');
+      if (ver >= 6.1 && tg.setHeaderColor) {
+        tg.setHeaderColor('bg_color');
+      }
+    } catch {
+      // no-op
+    }
   } catch (err) {
     // Не падаем, если что-то пошло не так — это всего лишь интеграция.
     // eslint-disable-next-line no-console

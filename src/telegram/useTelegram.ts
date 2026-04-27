@@ -36,23 +36,31 @@ export function useTelegramMainButton({
     if (!tg) return;
     const btn = tg.MainButton;
 
-    const shouldShow = !hidden && text.length > 0;
+    const shouldShow = !hidden && text.trim().length > 0;
 
-    btn.setParams({
-      text: text || ' ',
-      is_active: !disabled,
-      is_visible: shouldShow,
-    });
-
-    if (loading) btn.showProgress(true);
-    else btn.hideProgress();
+    try {
+      if (!shouldShow) {
+        // Просто прячем — НЕ вызываем setParams с пустым текстом,
+        // Telegram v6+ бросает WebAppBottomButtonParamInvalid.
+        btn.hide();
+      } else {
+        btn.setParams({
+          text: text.trim(),
+          is_active: !disabled,
+          is_visible: true,
+        });
+        if (loading) btn.showProgress(true);
+        else btn.hideProgress();
+      }
+    } catch {
+      // Telegram API может не поддерживать некоторые методы в старых
+      // клиентах — молча игнорируем, приложение продолжает работать.
+    }
 
     btn.onClick(onClick);
 
     return () => {
       btn.offClick(onClick);
-      // Не скрываем кнопку при unmount — следующий компонент сам её
-      // переопределит. Это даёт плавную смену MainButton между этапами.
     };
   }, [text, onClick, disabled, loading, hidden]);
 }
@@ -68,17 +76,24 @@ export function useTelegramBackButton({ onClick }: BackButtonOptions): void {
     if (!tg) return;
     const btn = tg.BackButton;
 
-    if (!onClick) {
-      btn.hide();
-      return;
+    try {
+      if (!onClick) {
+        btn.hide();
+        return;
+      }
+      btn.show();
+      btn.onClick(onClick);
+    } catch {
+      // no-op
     }
 
-    btn.show();
-    btn.onClick(onClick);
-
     return () => {
-      btn.offClick(onClick);
-      btn.hide();
+      try {
+        btn.offClick(onClick!);
+        btn.hide();
+      } catch {
+        // no-op
+      }
     };
   }, [onClick]);
 }
