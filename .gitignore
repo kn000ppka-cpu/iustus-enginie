@@ -23,5 +23,5 @@ npm-debug.log*
 # Test
 coverage/
 
-# Electron
-release/
+# Electron builder output (только корневая папка, НЕ src/engine/release/)
+/release/
