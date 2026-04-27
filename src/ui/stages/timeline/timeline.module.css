@@ -118,6 +118,21 @@
   grid-column: 1 / -1;
 }
 
+@media (max-width: 640px) {
+  .fieldGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .fieldGridFull {
+    grid-column: 1;
+  }
+
+  .card {
+    padding: 12px;
+  }
+}
+
 .label {
   display: block;
   font-size: 11px;

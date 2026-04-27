@@ -141,3 +141,29 @@
 .warningIcon {
   font-weight: 700;
 }
+
+@media (max-width: 640px) {
+  .headlineRange {
+    font-size: 18px;
+  }
+
+  /* На мобиле «Путь машины» — убираем колонку range (она переполняет) */
+  .pathItem {
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+  }
+
+  .pathRangeChange {
+    display: none;
+  }
+
+  .episodeRow {
+    grid-template-columns: 24px 1fr;
+    gap: 8px;
+  }
+
+  .episodeRange {
+    grid-column: 2;
+    font-size: 12px;
+  }
+}

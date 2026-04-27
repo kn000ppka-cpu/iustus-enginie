@@ -1,59 +1,86 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Основной каркас приложения
+   ────────────────────────────────────────────────────────────────────────── */
+
 .shell {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
+  /* 100dvh — «dynamic viewport height», правильно работает в Telegram WebApp
+     и мобильных браузерах (учитывает шторку адреса/навигации).
+     Fallback — 100vh для старых браузеров. */
   height: 100vh;
+  height: 100dvh;
   background: var(--bg);
+  overflow: hidden;
 }
+
+/* ── Шапка ─────────────────────────────────────────────────────────────── */
 
 .header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  padding: 18px 28px 12px;
+  padding: 14px 24px 10px;
   border-bottom: 1px solid var(--border);
   background: var(--bg);
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .subtitle {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-tertiary);
-  margin-left: 12px;
+  margin-left: 8px;
+  /* Скрываем длинный подзаголовок на маленьком экране */
 }
 
 .headerActions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
+
+/* ── Навигация по этапам ───────────────────────────────────────────────── */
 
 .stages {
   display: flex;
   gap: 4px;
-  padding: 10px 20px;
+  padding: 8px 16px;
   overflow-x: auto;
   border-bottom: 1px solid var(--border);
   background: var(--bg);
+  /* Плавная прокрутка пальцем */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.stages::-webkit-scrollbar {
+  display: none;
 }
 
 .stage {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 6px;
+  padding: 7px 12px;
   border-radius: var(--radius-md);
   background: var(--surface-2);
   color: var(--text-secondary);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   transition:
     background 0.15s,
     color 0.15s;
   white-space: nowrap;
+  flex-shrink: 0;
+  border: 1px solid transparent;
 }
 
 .stage:hover {
@@ -63,6 +90,7 @@
 .stageActive {
   background: var(--text);
   color: var(--surface);
+  border-color: var(--text);
 }
 
 .stageActive:hover {
@@ -73,21 +101,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.07);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .stageActive .stageNumber {
   background: rgba(255, 255, 255, 0.18);
 }
 
+/* ── Основная область контента ─────────────────────────────────────────── */
+
 .body {
   overflow-y: auto;
-  padding: 24px 28px 40px;
+  padding: 20px 24px 32px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .content {
@@ -95,13 +127,17 @@
   margin: 0 auto;
 }
 
+/* ── Нижний навигатор ─────────────────────────────────────────────────── */
+
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 28px;
+  padding: 12px 20px;
   border-top: 1px solid var(--border);
   background: var(--surface);
+  /* Учитываем safe-area (Home Indicator на iPhone) */
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
 }
 
 .navButton {
@@ -112,6 +148,8 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--text);
+  /* Минимальный размер тач-таргета 44px */
+  min-height: 44px;
 }
 
 .navButton:disabled {
@@ -129,4 +167,61 @@
   font-size: 12px;
   color: var(--text-tertiary);
   font-variant-numeric: tabular-nums;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   МОБИЛЬНАЯ АДАПТАЦИЯ (≤ 640px)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  .header {
+    padding: 10px 14px 8px;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  /* Подзаголовок скрываем — не влезает */
+  .subtitle {
+    display: none;
+  }
+
+  .stages {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+
+  .stage {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  /* На маленьком экране убираем текст из этапов — только номера */
+  .stage span:not(.stageNumber) {
+    display: none;
+  }
+
+  .stageNumber {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .body {
+    padding: 12px 12px 24px;
+  }
+
+  .footer {
+    padding: 10px 14px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
+  }
+
+  .navButton {
+    padding: 10px 16px;
+    font-size: 13px;
+    min-height: 44px;
+  }
 }

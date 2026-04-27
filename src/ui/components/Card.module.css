@@ -41,3 +41,19 @@
 .body {
   display: block;
 }
+
+@media (max-width: 640px) {
+  .card {
+    padding: 14px 14px;
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

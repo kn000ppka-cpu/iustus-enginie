@@ -179,3 +179,14 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 640px) {
+  .periodGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .periodCard {
+    padding: 12px;
+  }
+}
