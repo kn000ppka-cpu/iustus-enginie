@@ -1,0 +1,132 @@
+.shell {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100vh;
+  background: var(--bg);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 18px 28px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-left: 12px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.stages {
+  display: flex;
+  gap: 4px;
+  padding: 10px 20px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  white-space: nowrap;
+}
+
+.stage:hover {
+  background: var(--border);
+}
+
+.stageActive {
+  background: var(--text);
+  color: var(--surface);
+}
+
+.stageActive:hover {
+  background: var(--text);
+}
+
+.stageNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.07);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.stageActive .stageNumber {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.body {
+  overflow-y: auto;
+  padding: 24px 28px 40px;
+}
+
+.content {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.navButton {
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.navButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.navButtonPrimary {
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
+}
+
+.counter {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}

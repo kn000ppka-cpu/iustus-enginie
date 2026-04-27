@@ -1,0 +1,245 @@
+/* TimelineStage layout ─────────────────────────────────────────────── */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1100px) {
+  .row {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty {
+  padding: 18px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.addBtn {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* Card row (Episode / Conviction) ─────────────────────────────────── */
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.indexBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.removeBtn {
+  padding: 4px 10px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+}
+
+.fieldGridFull {
+  grid-column: 1 / -1;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.dispositionPreview {
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.metaTag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+}
+
+.metaTagAccent {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.metaTagWarn {
+  background: var(--warn-bg);
+  border-color: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+/* Right rail: рецидив + конфликты ─────────────────────────────────── */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recidivismBadge {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.recidivismBadgeNone {
+  background: var(--surface-2);
+  color: var(--text-secondary);
+}
+
+.recidivismBadgeSimple {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border-color: var(--info-bg);
+}
+
+.recidivismBadgeDangerous {
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  border-color: var(--warn-bg);
+}
+
+.recidivismBadgeEspecially {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger-bg);
+  font-weight: 600;
+}
+
+.recidivismKindLabel {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.conflictItem {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.conflictRule {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.conflictMessage {
+  line-height: 1.4;
+}

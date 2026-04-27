@@ -1,0 +1,228 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kpiRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.kpi {
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.kpiLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.kpiValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+
+.kpiAccent {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+
+.kpiAccent .kpiLabel,
+.kpiAccent .kpiValue {
+  color: var(--accent-text);
+}
+
+.kpiNote {
+  display: block;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.exportBtn {
+  align-self: flex-start;
+  padding: 10px 16px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.exportBtn:hover {
+  background: var(--accent-text);
+}
+
+.exportBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.previewTitle {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: 4px;
+}
+
+.previewBody {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.previewLine {
+  margin-bottom: 6px;
+  text-align: justify;
+}
+
+.pathItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.pathRule {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-text);
+}
+
+.pathDesc {
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.pathSource {
+  display: block;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* ── Ручное редактирование текста приговора ─────────────────────────── */
+
+.editToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.editStatus {
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex: 1;
+  min-width: 200px;
+}
+
+.editStatusActive {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.editBtn {
+  padding: 7px 14px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.editBtn:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+}
+
+.editBtnPrimary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.editBtnPrimary:hover {
+  background: var(--accent-text);
+  color: white;
+}
+
+.editBtnDanger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.editBtnDanger:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.editTextarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--surface);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.editTextarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.editHint {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: -2px;
+  margin-bottom: 6px;
+  font-style: italic;
+}

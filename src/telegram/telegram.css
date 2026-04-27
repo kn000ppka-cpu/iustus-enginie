@@ -1,0 +1,66 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Адаптация под Telegram Mini App
+   ──────────────────────────────────────────────────────────────────────────
+
+   Когда приложение открыто внутри Telegram, JS-код в src/telegram/webapp.ts
+   проставляет:
+     - CSS-переменные --tg-* (цвета из Telegram-темы)
+     - data-tg-scheme="light|dark" на <html>
+     - data-tg-platform="android|ios|tdesktop|..." на <html>
+
+   Здесь — переопределяем дизайн-токены, чтобы приложение выглядело
+   родным внутри Telegram.
+*/
+
+/* ── Light-тема Telegram ─────────────────────────────────────────────── */
+html[data-tg-scheme='light'] {
+  --bg: var(--tg-secondary-bg, #f7f6f3);
+  --surface: var(--tg-bg, #ffffff);
+  --surface-2: var(--tg-secondary-bg, #fafaf7);
+  --text: var(--tg-text, #1c1c1a);
+  --text-secondary: var(--tg-hint, #5a5853);
+  --accent: var(--tg-button, #1d6b4f);
+  --accent-text: var(--tg-button, #085041);
+}
+
+/* ── Dark-тема Telegram ──────────────────────────────────────────────── */
+html[data-tg-scheme='dark'] {
+  --bg: var(--tg-secondary-bg, #1a1a1c);
+  --surface: var(--tg-bg, #232529);
+  --surface-2: var(--tg-secondary-bg, #1a1a1c);
+  --border: #3a3c40;
+  --border-strong: #54575b;
+  --text: var(--tg-text, #f4f4f4);
+  --text-secondary: var(--tg-hint, #aaaab0);
+  --text-tertiary: var(--tg-hint, #8a8a90);
+  --accent: var(--tg-button, #4ea98a);
+  --accent-soft: rgba(78, 169, 138, 0.18);
+  --accent-text: #b9e6d4;
+  --warn-bg: rgba(196, 130, 30, 0.18);
+  --warn-text: #f5c992;
+  --danger: #e57373;
+  --danger-bg: rgba(229, 115, 115, 0.18);
+  --info-bg: rgba(80, 145, 220, 0.18);
+  --info-text: #9bc7f4;
+}
+
+/* ── Мобильные клиенты Telegram (узкий экран) ────────────────────────── */
+html[data-tg-platform='android'],
+html[data-tg-platform='ios'] {
+  /* Уменьшаем горизонтальные паддинги — экран узкий. */
+}
+
+html[data-tg-platform='android'] body,
+html[data-tg-platform='ios'] body {
+  /* Telegram сам управляет safe-area; добавим запас снизу под нативную
+     MainButton (≈ 60-70px), чтобы контент не упирался в неё. */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* MainButton Telegram перекрывает нижний footer наших стандартных
+   навигаций. Внутри Telegram прячем своё меню «Назад / Далее» — будем
+   использовать MainButton вместо него. */
+html[data-tg-platform='android'] [data-tg-hide-on-mobile],
+html[data-tg-platform='ios'] [data-tg-hide-on-mobile] {
+  display: none !important;
+}

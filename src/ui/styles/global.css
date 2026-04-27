@@ -1,0 +1,92 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Iustus Engine — глобальные стили
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Палитра (нейтральная, «судебная», без избыточности) */
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --surface-2: #fafaf7;
+  --border: #e3e1da;
+  --border-strong: #c9c6bc;
+
+  --text: #1c1c1a;
+  --text-secondary: #5a5853;
+  --text-tertiary: #8c8a82;
+
+  --accent: #1d6b4f;
+  --accent-soft: #e1f5ee;
+  --accent-text: #085041;
+
+  --warn-bg: #faeeda;
+  --warn-text: #854f0b;
+
+  --danger: #a32d2d;
+  --danger-bg: #fcebeb;
+
+  --info-bg: #e6f1fb;
+  --info-text: #185fa5;
+
+  /* Типографика */
+  --font-body:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}

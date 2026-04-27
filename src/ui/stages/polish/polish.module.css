@@ -1,0 +1,181 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1100px) {
+  .row {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty {
+  padding: 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.addBtn {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.addBtn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* Карточка периода */
+.periodCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.periodHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.periodTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.periodGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 10px 16px;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.removeBtn {
+  padding: 4px 10px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+}
+.removeBtn:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* Правый рейл */
+.kpi {
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kpiLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.kpiValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.kpiNote {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.kpiAccent {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+
+.kpiAccent .kpiLabel,
+.kpiAccent .kpiValue,
+.kpiAccent .kpiNote {
+  color: var(--accent-text);
+}
+
+.kpiBlocked {
+  background: var(--danger-bg);
+  border-color: var(--danger-bg);
+}
+
+.kpiBlocked .kpiLabel,
+.kpiBlocked .kpiValue,
+.kpiBlocked .kpiNote {
+  color: var(--danger);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+.toggleRowDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

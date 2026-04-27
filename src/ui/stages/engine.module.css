@@ -1,0 +1,143 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Главный диапазон */
+.headline {
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.headlineLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.headlineRange {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-text);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.headlineNote {
+  font-size: 12px;
+  color: var(--accent-text);
+  opacity: 0.85;
+}
+
+.headlineDanger {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+}
+
+.headlineDanger .headlineLabel,
+.headlineDanger .headlineRange,
+.headlineDanger .headlineNote {
+  color: var(--danger);
+}
+
+/* Эпизодный список */
+.episodeRow {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.episodeRow:last-child {
+  border-bottom: none;
+}
+
+.episodeIndex {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.episodeTitle {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.episodeRange {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+
+/* Лог "Путь машины" */
+.pathList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pathItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-size: 12px;
+  border-left: 3px solid var(--accent);
+  align-items: baseline;
+}
+
+.pathRule {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+
+.pathDescription {
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.pathRangeChange {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.pathSource {
+  display: block;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* Предупреждения */
+.warning {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.warningIcon {
+  font-weight: 700;
+}

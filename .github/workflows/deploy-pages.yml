@@ -1,0 +1,58 @@
+name: Deploy Telegram Mini App to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Один деплой за раз: новый push отменяет предыдущий, если ещё идёт.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Type-check
+        run: npx tsc -b
+
+      - name: Test
+        run: npx vitest run --reporter=basic
+
+      - name: Build (Telegram-mode)
+        env:
+          # Vite base = /<repo-name>/ для GitHub Pages.
+          # Если репозиторий называется по-другому — поправьте здесь.
+          VITE_TELEGRAM_BUILD: '1'
+          VITE_BASE_PATH: '/iustus-engine/'
+        run: npm run build:telegram
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

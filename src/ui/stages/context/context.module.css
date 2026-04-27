@@ -1,0 +1,236 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Чек-лист обстоятельств ───────────────────────────────────────────── */
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkRow {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.checkRow:hover {
+  background: var(--surface-2);
+}
+
+.checkRowActive {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+
+.checkBoxOuter {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkBoxOuterActive {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.checkLabel {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.checkLabelHint {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.checkNorm {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+.triggerBadge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--info-bg);
+  color: var(--info-text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* Эпизодная панель ─────────────────────────────────────────────────── */
+
+.episodeBlock {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.episodeHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.episodeTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.episodeMeta {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.flagsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flagItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.flagItemActive {
+  background: var(--accent-soft);
+}
+
+.flagText {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.flagSubtext {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.flagDisabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ст. 15 ч. 6 — отдельная кнопка ──────────────────────────────────── */
+
+.art156Box {
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  background: var(--accent-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.art156Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.art156Title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-text);
+}
+
+.art156Note {
+  font-size: 12px;
+  color: var(--accent-text);
+  line-height: 1.4;
+}
+
+.art156Toggle {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  color: var(--accent-text);
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.art156ToggleActive {
+  background: var(--accent);
+  color: white;
+}
+
+/* Глобальный блок ──────────────────────────────────────────────────── */
+
+.globalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+
+.globalToggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  cursor: pointer;
+}
+
+.globalToggleActive {
+  background: var(--accent-soft);
+}

@@ -1,0 +1,157 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.fullRow {
+  grid-column: 1 / -1;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.sectionHint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.toggleStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ageBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.ageBadgeJuvenile {
+  background: var(--warn-bg);
+  border-color: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+/* Панель «Что можно назначить» ────────────────────────────────────── */
+
+.filterTable {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.filterRow {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--surface);
+}
+
+.filterRowBlocked {
+  background: var(--surface-2);
+}
+
+.filterStatus {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.filterStatusOk {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.filterStatusBlocked {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.filterTitle {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.filterTitleBlocked {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  text-decoration-color: var(--text-tertiary);
+}
+
+.filterReason {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.filterRuleId {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-left: 8px;
+}
+
+/* Юношеский баннер ─────────────────────────────────────────────────── */
+
+.juvenileBanner {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.juvenileBannerTitle {
+  font-weight: 600;
+}
+
+.juvenileBannerNote {
+  font-size: 12px;
+  opacity: 0.85;
+}

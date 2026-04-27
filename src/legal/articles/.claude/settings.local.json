@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdftotext \"/Users/andreymenshikov/Desktop/МАТЕРИАЛЫ КАЛК/кодексы/Уголовный кодекс Российской Федерации  от 13.06.1996 N 63-ФЗ.pdf\" /tmp/uk_rf.txt)",
+      "Read(//tmp/**)",
+      "Bash(python3 /tmp/parse_and_generate.py)",
+      "Read(//Users/andreymenshikov/Desktop/Iustus Engine/**)",
+      "Bash(npx tsc *)",
+      "Bash(npx vitest *)",
+      "Bash(grep -E \"number: '[0-9]{1,3}\\(\\\\.[0-9]+\\)?'\" src/legal/articles/seed.ts)",
+      "Bash(grep -oE \"number: '[0-9]{1,3}\\(\\\\.[0-9]+\\)?'\" src/legal/articles/seed.ts)",
+      "Bash(cat)",
+      "Bash(python3 /tmp/fix_terrorism.py)",
+      "Bash(python3 /tmp/add_terrorism_flags.py)",
+      "Bash(python3 /tmp/fix_sanctions.py)",
+      "Bash(python3 /tmp/fix_categories.py)"
+    ]
+  }
+}

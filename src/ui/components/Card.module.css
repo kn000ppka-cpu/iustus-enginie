@@ -1,0 +1,43 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 18px;
+}
+
+.card.info {
+  background: var(--info-bg);
+  border-color: rgba(24, 95, 165, 0.18);
+}
+
+.card.warn {
+  background: var(--warn-bg);
+  border-color: rgba(133, 79, 11, 0.2);
+}
+
+.card.accent {
+  background: var(--accent-soft);
+  border-color: rgba(8, 80, 65, 0.15);
+}
+
+.header {
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.description {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.body {
+  display: block;
+}
