@@ -37,9 +37,9 @@ jobs:
       - name: Build (Telegram-mode)
         env:
           # Vite base = /<repo-name>/ для GitHub Pages.
-          # Если репозиторий называется по-другому — поправьте здесь.
+          # ВНИМАНИЕ: имя репо в GitHub = iustus-enginie (с одной 'i' в конце)
           VITE_TELEGRAM_BUILD: '1'
-          VITE_BASE_PATH: '/iustus-engine/'
+          VITE_BASE_PATH: '/iustus-enginie/'
         run: npm run build:telegram
 
       - name: Upload Pages artifact
